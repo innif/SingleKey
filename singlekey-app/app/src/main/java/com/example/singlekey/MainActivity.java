@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 copyPassword();
-                Snackbar.make(view, R.string.app_name, Snackbar.LENGTH_LONG)
+                Snackbar.make(view, R.string.snackbar_copied, Snackbar.LENGTH_LONG)
                         .setAction(R.string.snackbar_copied, null).show();
             }
         });
