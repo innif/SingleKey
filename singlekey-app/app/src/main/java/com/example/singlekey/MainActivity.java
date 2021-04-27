@@ -8,12 +8,22 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.view.KeyEvent;
 import android.view.View;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+
+    PassGenerationService passGenerationService;
+    MasterKeyService keyService;
+
+    public void copyPassword(){
+        //TODO copy Password to Clipboard
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,14 +32,32 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        FloatingActionButton copyButton = findViewById(R.id.fab);
+        final EditText input = findViewById(R.id.et_service);
+        final TextView password = findViewById(R.id.tv_password);
+
+        input.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                CharSequence input = textView.getText();
+                passGenerationService.setMasterPass(keyService.getMasterkey());
+                password.setText(passGenerationService.generatePassword(input));
+                return false;
             }
         });
+
+        copyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                copyPassword();
+                Snackbar.make(view, R.string.app_name, Snackbar.LENGTH_LONG)
+                        .setAction(R.string.snackbar_copied, null).show();
+            }
+        });
+
+        passGenerationService = new PassGenerationService("SALT");
+        passGenerationService.setMasterPass("Baum"); // TODO
+        keyService = new MasterKeyService(this);
     }
 
     @Override
