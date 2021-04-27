@@ -33,12 +33,7 @@ public class MasterKeyService {
         builder.setView(dialogView);
         builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                applyPassword(passfield.getText().toString(), remeber.isSelected());
-            }
-        });
-        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                // TODO cancel
+                applyPassword(passfield.getText().toString(), remeber.isChecked());
             }
         });
         AlertDialog alertDialog = builder.create();
