@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">SingleKey</string>
+    <string name="action_change_passwort">Change Masterpassword</string>
+
+    <string name="service_field_hint">enter service name</string>
+    <string name="password">password:</string>
+    <string name="empty_password">----------</string>
+    <string name="snackbar_copied">password copied to clipboard</string>
+
+    <!-->Masterkey Dialog</!-->
+    <string name="masterkey_dialog_title">Master Password</string>
+    <string name="masterkey_dialog_text">Please enter Your master password:</string>
+    <string name="save_password">remember password</string>
+    <string name="masterkey_hint">enter masterkey</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+</resources>
